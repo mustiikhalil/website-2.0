@@ -1,14 +1,98 @@
 import FlatBuffers
+import Foundation
 import TokamakShim
+//import Compute
+
+struct Project: Identifiable {
+  let id: Int
+}
+
+struct HeaderView: View {
+  var body: some View {
+    DynamicHTML(
+      "div",
+      ["style": "width: 100%; max-height: 10rem; background-color: #9A56A2; text-align: center; position: fixed;"])
+    {
+      Text("Build with Flatbuffers & SwiftWasm <3")
+    }
+  }
+}
+
+struct AboutMeView: View {
+
+  var body: some View {
+    HStack {
+      VStack {
+        Text("Name Surname")
+          .font(.largeTitle)
+        Text("Project description and how the project worked and explanation")
+          .font(.title)
+      }
+    }
+    .padding(.top, 40)
+  }
+
+}
+
+struct ProjectView: View {
+
+  var body: some View {
+    HStack {
+      VStack(alignment: .leading) {
+        Text("Project name")
+        Text("Project description and how the project worked and explanation")
+      }
+    }
+  }
+
+}
+
+//struct Store {
+//
+//  init() {
+////    let session = URLSession
+////      .shared
+////      .dataTask(
+////      with: URL(string: "https://infinite-cove.herokuapp.com/api/v1/about")!)
+////    { data, response, error in
+////      print(data)
+////    }
+//  }
+//
+//  func get() {
+////    Task {
+////      let data = try await fetch("https://infinite-cove.herokuapp.com/api/v1/about")
+////      print(data)
+////    }
+//  }
+//}
 
 struct MainView: View {
+//  let store = Store()
+
+  var data: [Project] = [
+    Project(id: 1),
+    Project(id: 2),
+    Project(id: 3),
+    Project(id: 4),
+    Project(id: 5)
+  ]
   var body: some View {
-    Text("position is, is mouse button down?")
+    VStack {
+      HeaderView()
+      AboutMeView()
+      List(data) { _ in
+        ProjectView()
+      }
+    }
+    .onAppear {
+//      store.get()
+    }
   }
 }
 
 @main
-struct CounterApp: App {
+struct Website: App {
   var body: some Scene {
     WindowGroup("MustiiKhalil's Resume") {
       DynamicHTML(

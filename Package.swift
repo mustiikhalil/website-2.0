@@ -32,9 +32,6 @@ let package = Package(
         .product(
           name: "FlatBuffers",
           package: "FlatBuffers"),
-        .product(
-          name: "JavaScriptKit",
-          package: "JavaScriptKit")
       ]),
     .testTarget(
       name: "website-2.0Tests",
