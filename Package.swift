@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
   name: "website-2.0",
   platforms: [
-    .macOS(.v11),
+    .macOS(.v12),
   ],
   products: [
     .executable(
@@ -19,6 +19,9 @@ let package = Package(
       url: "https://github.com/mustiikhalil/FlatBuffers",
       from: "2.0.8"),
     .package(
+      url: "https://github.com/swiftwasm/WebFoundation",
+      branch: "main"),
+    .package(
       url: "https://github.com/TokamakUI/Tokamak",
       branch: "main")
   ],
@@ -26,6 +29,9 @@ let package = Package(
     .executableTarget(
       name: "website-2.0",
       dependencies: [
+        .product(
+          name: "WebFoundation",
+          package: "WebFoundation"),
         .product(
           name: "TokamakShim",
           package: "Tokamak"),

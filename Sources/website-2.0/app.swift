@@ -1,7 +1,7 @@
 import FlatBuffers
 import Foundation
 import TokamakShim
-//import Compute
+import WebFoundation
 
 struct Project: Identifiable {
   let id: Int
@@ -47,28 +47,24 @@ struct ProjectView: View {
 
 }
 
-//struct Store {
-//
-//  init() {
-////    let session = URLSession
-////      .shared
-////      .dataTask(
-////      with: URL(string: "https://infinite-cove.herokuapp.com/api/v1/about")!)
-////    { data, response, error in
-////      print(data)
-////    }
-//  }
-//
-//  func get() {
-////    Task {
-////      let data = try await fetch("https://infinite-cove.herokuapp.com/api/v1/about")
-////      print(data)
-////    }
-//  }
-//}
+struct Store {
+
+  func get() {
+    Task {
+        let session = URLSession.shared
+        let (data, response) = try await session.data(
+          for: URLRequest(
+            url: URL(
+              string: "https://infinite-cove.herokuapp.com/api/v1/about")!))
+      print("data: ", data)
+      let array: [UInt8] = data.map { $0 }
+      print("array: \(array)")
+    }
+  }
+}
 
 struct MainView: View {
-//  let store = Store()
+  let store = Store()
 
   var data: [Project] = [
     Project(id: 1),
@@ -86,7 +82,7 @@ struct MainView: View {
       }
     }
     .onAppear {
-//      store.get()
+      store.get()
     }
   }
 }
