@@ -14,10 +14,8 @@ let package = Package(
   ],
   dependencies: [
     .package(
-      url: "https://github.com/swiftwasm/JavaScriptKit", from: "0.15.0"),
-    .package(
       url: "https://github.com/mustiikhalil/FlatBuffers",
-      from: "2.0.8"),
+      from: "22.9.24"),
     .package(
       url: "https://github.com/swiftwasm/WebFoundation",
       branch: "main"),
