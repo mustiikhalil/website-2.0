@@ -19,9 +19,9 @@ let package = Package(
     .package(
       url: "https://github.com/swiftwasm/WebFoundation",
       branch: "main"),
-    .package(
-      url: "https://github.com/TokamakUI/Tokamak",
-      branch: "main")
+     .package(
+       url: "https://github.com/TokamakUI/Tokamak",
+       branch: "main")
   ],
   targets: [
     .executableTarget(
@@ -30,12 +30,18 @@ let package = Package(
         .product(
           name: "WebFoundation",
           package: "WebFoundation"),
-        .product(
-          name: "TokamakShim",
-          package: "Tokamak"),
+         .product(
+           name: "TokamakShim",
+           package: "Tokamak"),
         .product(
           name: "FlatBuffers",
           package: "FlatBuffers"),
+      ],
+      linkerSettings: [
+        .unsafeFlags([
+            "-Xlinker",
+            "--export=main"
+        ])
       ]),
     .testTarget(
       name: "website-2.0Tests",
